@@ -77,9 +77,5 @@ public class Room {
         descriptionOfRoom.append(" Cena na jednu noc činí: " + pricePerNight.toString() + " Kč.");
 
         return String.valueOf(descriptionOfRoom);
-//                + hasBalcony +
-//                ", hasViewToSea=" + hasViewToSea +
-//                ", pricePerNight=" + pricePerNight +
-//                '}';
     }
 }

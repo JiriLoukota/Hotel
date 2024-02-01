@@ -7,6 +7,7 @@ public class Booking {
     private boolean workingStay;
     private Guest guestOne;
     private Guest guestTwo;
+    private Guest guestThree;
 
     public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne) {
         this.room = room;
@@ -15,6 +16,7 @@ public class Booking {
         this.workingStay = workingStay;
         this.guestOne = guestOne;
         this.guestTwo = new Guest("","",null);
+        this.guestThree = new Guest("","",null);
     }
 
     public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne, Guest guestTwo) {
@@ -24,7 +26,19 @@ public class Booking {
         this.workingStay = workingStay;
         this.guestOne = guestOne;
         this.guestTwo = guestTwo;
+        this.guestThree = new Guest("","",null);
     }
+
+    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne, Guest guestTwo, Guest guestThree) {
+        this.room = room;
+        this.firstDay = firstDay;
+        this.lastDay = lastDay;
+        this.workingStay = workingStay;
+        this.guestOne = guestOne;
+        this.guestTwo = guestTwo;
+        this.guestThree = guestThree;
+    }
+
     //region Settery a Gettery
 
     public Room getRoom() {
@@ -70,7 +84,7 @@ public class Booking {
             description.append(" není pracovní pobyt.");
         }
 
-        description.append(" V tomto pokoji budou ubytováni: " + guestOne.getFirstName() + " " + guestOne.getSurname() +" " + guestTwo.getFirstName() +" "+ guestTwo.getSurname());
+        description.append(" V tomto pokoji budou ubytováni: " + guestOne.getFirstName() + " " + guestOne.getSurname() +" " + guestTwo.getFirstName() +" "+ guestTwo.getSurname()+" " + guestThree.getFirstName() +" "+ guestThree.getSurname());
 
         return description.toString();
     }
