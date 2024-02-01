@@ -33,6 +33,7 @@ public class Main {
         System.out.println("Rezervace:");
         System.out.println(bookingOne);
         System.out.println(bookingTwo);
+        System.out.println();
 
     }
 }

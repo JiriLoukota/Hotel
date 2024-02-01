@@ -61,6 +61,11 @@ public class Booking {
 
     //endregion
 
+
+    public int getNumberOfGuests(){
+        return guests.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder description =new StringBuilder("Popis pobytu:pokoj číslo:" + room.getRoomNo() + ", počátek pobytu: " + firstDay.getDayOfMonth() + ". " + firstDay.getMonthValue() + ". " + firstDay.getYear() + ", konec pobytu:" + lastDay.getDayOfMonth() + ". " + lastDay.getMonthValue() + ". " + lastDay.getYear());

@@ -15,5 +15,22 @@ public class BookingManager {
     public void clearBookings(){
         bookings.clear();
     }
+    public int getNumberOfWorkingBookings(){
+        int numberOfWorkingBookings = 0;
+        for (Booking booking : bookings) {
+            if (booking.isWorkingStay()) {
+                numberOfWorkingBookings++;
+            }
+        }
+        return numberOfWorkingBookings;
+    }
+    public double getAverageGuests(){
+        double averageGuests=0;
+        for(Booking booking : bookings){
+            averageGuests += Double.valueOf(booking.getNumberOfGuests());
+        }
+        averageGuests = averageGuests/bookings.size();
+        return averageGuests;
+    }
 
 }
