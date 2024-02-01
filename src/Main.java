@@ -1,5 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +13,13 @@ public class Main {
         Room roomTwo = new Room(2,1,true,true, BigDecimal.valueOf(1000));
         Room roomThree = new Room(3,3,false,true, BigDecimal.valueOf(2400));
         //Rezervace
-        Booking bookingOne = new Booking(roomOne, LocalDate.of(2021,7,19),LocalDate.of(2021,7,26), true, guestOne);
-        Booking bookingTwo = new Booking(roomThree, LocalDate.of(2021,9,1), LocalDate.of(2021,9,14), false, guestOne,guestTwo);
+        List<Guest> guestList = new ArrayList<>();
+        guestList.add(guestOne);
+        List<Guest> guestList2 = new ArrayList<>();
+        guestList2.add(guestOne);
+        guestList2.add(guestTwo);
+        Booking bookingOne = new Booking(roomOne, LocalDate.of(2021,7,19),LocalDate.of(2021,7,26), true, guestList);
+        Booking bookingTwo = new Booking(roomThree, LocalDate.of(2021,9,1), LocalDate.of(2021,9,14), false, guestList2);
         //Výpis
         System.out.println("Hosté:");
         System.out.println(guestOne.toString());

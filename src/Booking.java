@@ -1,43 +1,21 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Booking {
     private Room room;
     private LocalDate firstDay;
     private LocalDate lastDay;
     private boolean workingStay;
-    private Guest guestOne;
-    private Guest guestTwo;
-    private Guest guestThree;
+    private List<Guest> guests;
 
-    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne) {
+    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, List<Guest> guests) {
         this.room = room;
         this.firstDay = firstDay;
         this.lastDay = lastDay;
         this.workingStay = workingStay;
-        this.guestOne = guestOne;
-        this.guestTwo = new Guest("","",null);
-        this.guestThree = new Guest("","",null);
+        this.guests = guests;
     }
 
-    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne, Guest guestTwo) {
-        this.room = room;
-        this.firstDay = firstDay;
-        this.lastDay = lastDay;
-        this.workingStay = workingStay;
-        this.guestOne = guestOne;
-        this.guestTwo = guestTwo;
-        this.guestThree = new Guest("","",null);
-    }
-
-    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, Guest guestOne, Guest guestTwo, Guest guestThree) {
-        this.room = room;
-        this.firstDay = firstDay;
-        this.lastDay = lastDay;
-        this.workingStay = workingStay;
-        this.guestOne = guestOne;
-        this.guestTwo = guestTwo;
-        this.guestThree = guestThree;
-    }
 
     //region Settery a Gettery
 
@@ -73,6 +51,14 @@ public class Booking {
         this.workingStay = workingStay;
     }
 
+    public List<Guest> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(List<Guest> guests) {
+        this.guests = guests;
+    }
+
     //endregion
 
     @Override
@@ -84,8 +70,7 @@ public class Booking {
             description.append(" není pracovní pobyt.");
         }
 
-        description.append(" V tomto pokoji budou ubytováni: " + guestOne.getFirstName() + " " + guestOne.getSurname() +" " + guestTwo.getFirstName() +" "+ guestTwo.getSurname()+" " + guestThree.getFirstName() +" "+ guestThree.getSurname());
-
+        description.append(" V tomto pokoji budou ubytováni: " + guests.toString());
         return description.toString();
     }
 }
