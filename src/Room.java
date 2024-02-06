@@ -1,12 +1,13 @@
 import java.math.BigDecimal;
 
 public class Room {
+    //Attributes
     private int roomNo;
     private int numberOfBeds;
     private boolean hasBalcony;
     private boolean hasViewToSea;
     private BigDecimal pricePerNight;
-
+    //Constructor
     public Room(int roomNo,int numberOfBeds, boolean hasBalcony, boolean hasViewToSea, BigDecimal pricePerNight){
         this.roomNo=roomNo;
         this.numberOfBeds=numberOfBeds;
@@ -56,26 +57,24 @@ public class Room {
     public void setPricePerNight(BigDecimal pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
+
     //endregion
 
-
+    //Converting room info into text
     @Override
     public String toString() {
-        StringBuilder descriptionOfRoom = new StringBuilder("Pokoj číslo " + roomNo + " obsahuje " + numberOfBeds + " postelí, ");
+        StringBuilder descriptionOfRoom = new StringBuilder("Číslo pokoje:  " + roomNo + ", počet postelí " + numberOfBeds + ", balkón: ");
         if(hasBalcony){
-            descriptionOfRoom.append("má balkon ");
+            descriptionOfRoom.append("ano, ");
         }else{
-            descriptionOfRoom.append("nemá balkon ");
+            descriptionOfRoom.append("ne, ");
         }
-
         if(hasViewToSea){
-            descriptionOfRoom.append("a má výhled na moře.");
+            descriptionOfRoom.append("výhled na moře: ano, ");
         }else{
-            descriptionOfRoom.append("a nemá výhled na moře.");
+            descriptionOfRoom.append("výhled na moře: ne, ");
         }
-
-        descriptionOfRoom.append(" Cena na jednu noc činí: " + pricePerNight.toString() + " Kč.");
-
+        descriptionOfRoom.append("cena na jednu noc: ").append(pricePerNight.toString()).append(" Kč");
         return String.valueOf(descriptionOfRoom);
     }
 }

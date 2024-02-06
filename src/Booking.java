@@ -1,19 +1,34 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Booking {
+    //Attributes
     private Room room;
     private LocalDate firstDay;
     private LocalDate lastDay;
     private boolean workingStay;
+    private Guest mainGuest;
     private List<Guest> guests;
-
-    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay, List<Guest> guests) {
+    //Constructors
+    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay,Guest mainGuest, List<Guest> guests) {
         this.room = room;
         this.firstDay = firstDay;
         this.lastDay = lastDay;
         this.workingStay = workingStay;
+        this.mainGuest = mainGuest;
         this.guests = guests;
+    }
+    public Booking(Room room, LocalDate firstDay, LocalDate lastDay, boolean workingStay,Guest mainGuest) {
+        this.room = room;
+        this.firstDay = firstDay;
+        this.lastDay = lastDay;
+        this.workingStay = workingStay;
+        this.mainGuest = mainGuest;
+        List<Guest> guestList = new ArrayList<>();
+        guestList.add(mainGuest);
+        this.guests = guestList;
     }
 
 
@@ -59,23 +74,38 @@ public class Booking {
         this.guests = guests;
     }
 
+    public Guest getMainGuest() {
+        return mainGuest;
+    }
+
+    public void setMainGuest(Guest mainGuest) {
+        this.mainGuest = mainGuest;
+    }
     //endregion
 
+    //Special methods:
 
+    //Returns number of guests
     public int getNumberOfGuests(){
         return guests.size();
     }
-
+    //Returns length of booking in days
+    public int getBokingLength(){
+        int bookingLength = lastDay.compareTo(firstDay) + 1;
+        return bookingLength;
+    }
+    //Returns total price of booking
+    public BigDecimal getPrice(){
+        return this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBokingLength()));
+    }
+    //Converting booking information into text
     @Override
     public String toString() {
-        StringBuilder description =new StringBuilder("Popis pobytu:pokoj číslo:" + room.getRoomNo() + ", počátek pobytu: " + firstDay.getDayOfMonth() + ". " + firstDay.getMonthValue() + ". " + firstDay.getYear() + ", konec pobytu:" + lastDay.getDayOfMonth() + ". " + lastDay.getMonthValue() + ". " + lastDay.getYear());
-        if(workingStay){
-            description.append(" je pracovní pobyt.");
-        }else{
-            description.append(" není pracovní pobyt.");
-        }
-
-        description.append(" V tomto pokoji budou ubytováni: " + guests.toString());
-        return description.toString();
+        String viewToSea;
+        if(this.getRoom().isHasViewToSea())  viewToSea = "ano";
+        else viewToSea="ne";
+        return this.getFirstDay() + " až " + this.getLastDay() + ": " + this.getMainGuest().getFirstName() + " " + this.getMainGuest().getSurname() +
+                " (" + this.getMainGuest().getBirthday().getDayOfMonth() + ". " + this.getMainGuest().getBirthday().getMonthValue() + ". " + this.getMainGuest().getBirthday().getYear()
+                + ") [" + this.getNumberOfGuests() + ", " + viewToSea + "] za " + this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBokingLength())) + " Kč";
     }
 }

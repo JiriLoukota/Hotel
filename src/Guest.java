@@ -1,10 +1,11 @@
 import java.time.LocalDate;
 
 public class Guest {
+    //Attributes
     private String firstName;
     private String surname;
     private LocalDate birthday;
-
+    //Constructor
     public Guest(String firstName, String surname, LocalDate birthday) {
         this.firstName = firstName;
         this.surname = surname;
@@ -37,8 +38,9 @@ public class Guest {
     }
     //endregion
 
+    //Converting guests information into text
     @Override
     public String toString() {
-        return firstName +" "+ surname +", datum narození: "+ birthday.getDayOfMonth() + ". " + birthday.getMonthValue() + ". " + birthday.getYear();
+        return "Jméno a příjmení: " + firstName +" "+ surname +", datum narození: "+ birthday.getDayOfMonth() + ". " + birthday.getMonthValue() + ". " + birthday.getYear();
     }
 }
