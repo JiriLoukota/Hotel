@@ -90,13 +90,12 @@ public class Booking {
         return guests.size();
     }
     //Returns length of booking in days
-    public int getBokingLength(){
-        int bookingLength = lastDay.compareTo(firstDay) + 1;
-        return bookingLength;
+    public int getBookingLength(){
+        return lastDay.compareTo(firstDay) + 1;
     }
     //Returns total price of booking
     public BigDecimal getPrice(){
-        return this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBokingLength()));
+        return this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBookingLength()));
     }
     //Converting booking information into text
     @Override
@@ -104,8 +103,8 @@ public class Booking {
         String viewToSea;
         if(this.getRoom().isHasViewToSea())  viewToSea = "ano";
         else viewToSea="ne";
-        return this.getFirstDay() + " až " + this.getLastDay() + ": " + this.getMainGuest().getFirstName() + " " + this.getMainGuest().getSurname() +
+        return this.getFirstDay().getDayOfMonth() + ". " + this.getFirstDay().getMonthValue() + ". " + this.getFirstDay().getYear() + " až " + this.getLastDay().getDayOfMonth() + ". " + this.getLastDay().getMonthValue() + ". " + this.getLastDay().getYear() + ": " + this.getMainGuest().getFirstName() + " " + this.getMainGuest().getSurname() +
                 " (" + this.getMainGuest().getBirthday().getDayOfMonth() + ". " + this.getMainGuest().getBirthday().getMonthValue() + ". " + this.getMainGuest().getBirthday().getYear()
-                + ") [" + this.getNumberOfGuests() + ", " + viewToSea + "] za " + this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBokingLength())) + " Kč";
+                + ") [" + this.getNumberOfGuests() + ", " + viewToSea + "] za " + this.getRoom().getPricePerNight().multiply(BigDecimal.valueOf(this.getBookingLength())) + " Kč";
     }
 }
